@@ -3,13 +3,18 @@ package cleancode.minesweeper.tobe;
 import java.util.Arrays;
 import java.util.Random;
 
+import cleancode.minesweeper.tobe.gamelevel.GameLevel;
+
 public class GameBoard {
-	private static final int LAND_MINE_COUNT = 10;
-
 	private final Cell[][] board;
+	private final int landMineCount;
 
-	public GameBoard(int rowSize, int colSize) {
+	public GameBoard(GameLevel gameLevel) {
+		int rowSize = gameLevel.getRowSize();
+		int colSize = gameLevel.getColSize();
 		board = new Cell[rowSize][colSize];
+
+		landMineCount = gameLevel.getLandMineCount();
 	}
 
 	void initializeGame() {
@@ -22,7 +27,7 @@ public class GameBoard {
 			}
 		}
 
-		for (int i = 0; i < LAND_MINE_COUNT; i++) {
+		for (int i = 0; i < landMineCount; i++) {
 			int landMineCol = new Random().nextInt(colSize);
 			int landMineRow = new Random().nextInt(rowSize);
 

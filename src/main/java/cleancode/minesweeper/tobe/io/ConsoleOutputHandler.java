@@ -1,5 +1,9 @@
 package cleancode.minesweeper.tobe.io;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.IntStream;
+
 import cleancode.minesweeper.tobe.GameBoard;
 import cleancode.minesweeper.tobe.GameException;
 
@@ -11,15 +15,26 @@ public class ConsoleOutputHandler {
 	}
 
 	public void showBoard(GameBoard board) {
-		System.out.println("   a b c d e f g h i j");
+		final String alphabets = generateColAlphabets(board);
+		System.out.println("    " + alphabets);
+
 		for (int row = 0; row < board.getRowSize(); row++) {
-			System.out.printf("%d  ", row + 1);
+			System.out.printf("%2d  ", row + 1);
 			for (int col = 0; col < board.getColSize(); col++) {
 				System.out.print(board.getSign(row, col) + " ");
 			}
 			System.out.println();
 		}
 		System.out.println();
+	}
+
+	private String generateColAlphabets(GameBoard board) {
+		final List<String> alphabets = IntStream.range(0, board.getColSize())
+			.mapToObj(index -> (char)('a' + index))
+			.map(Objects::toString)
+			.toList();
+
+		return String.join(" ", alphabets);
 	}
 
 	public void printGameWinningComment() {
