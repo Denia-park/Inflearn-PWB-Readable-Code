@@ -3,6 +3,7 @@ package cleancode.minesweeper.tobe;
 import java.util.List;
 
 import cleancode.minesweeper.tobe.cell.Cell;
+import cleancode.minesweeper.tobe.cell.CellSnapshot;
 import cleancode.minesweeper.tobe.cell.Cells;
 import cleancode.minesweeper.tobe.cell.EmptyCell;
 import cleancode.minesweeper.tobe.cell.LandMineCell;
@@ -95,9 +96,9 @@ public class GameBoard {
 		return board[0].length;
 	}
 
-	public String getSign(CellPosition cellPosition) {
+	public CellSnapshot getSnapshot(CellPosition cellPosition) {
 		Cell cell = findCell(cellPosition);
-		return cell.getSign();
+		return cell.getSnapshot();
 	}
 
 	private Cell findCell(CellPosition cellPosition) {
