@@ -43,6 +43,10 @@ public class CellSnapshot {
 		return nearbyLandMineCount;
 	}
 
+	public boolean isSameStatus(CellSnapshotStatus cellSnapshotStatus) {
+		return this.status == cellSnapshotStatus;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
